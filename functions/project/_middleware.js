@@ -23,6 +23,8 @@ export async function onRequest(context) {
   const projectId = pathParts[pathParts.length - 1];
 
   let res = await next();
+  return res;
+
   let project;
 
   // Load project data

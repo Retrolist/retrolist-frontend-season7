@@ -1,5 +1,19 @@
 import { ethers } from "ethers";
 
+const roundSubdomainMap: { [subdomain: string]: number } =
+  import.meta.env.VITE_ROUNDS_SUBDOMAIN.split(",").reduce(
+    (acc: Record<string, number>, pair: string) => {
+      const [round, subdomain] = pair.split(":");
+      acc[subdomain] = parseInt(round);
+      return acc;
+    },
+    {} as Record<string, number>
+  );
+
+export const CURRENT_ROUND =
+  roundSubdomainMap[window.location.hostname?.split(".")[0]] ||
+  parseInt(import.meta.env.VITE_CURRENT_ROUND);
+
 export function addrParse(addr: string): string {
   return addr.substring(0, 6) + '...' + addr.substring(addr.length - 4, addr.length);
 }
