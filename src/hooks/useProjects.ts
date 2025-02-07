@@ -74,16 +74,20 @@ export function useProjects(options: ProjectQueryOptions) {
         );
       }
 
+      filteredProjects = filteredProjects.filter(
+        (project) => project.prelimResult.toLowerCase() !== "remove"
+      );
+
       // Filter based on prelimResult and options.approved
-      if (options.approved) {
-        filteredProjects = filteredProjects.filter(
-          (project) => project.prelimResult.toLowerCase() === "keep"
-        );
-      } else {
-        filteredProjects = filteredProjects.filter(
-          (project) => project.prelimResult.toLowerCase() !== "keep"
-        );
-      }
+      // if (options.approved) {
+      //   filteredProjects = filteredProjects.filter(
+      //     (project) => project.prelimResult.toLowerCase() === "keep"
+      //   );
+      // } else {
+      //   filteredProjects = filteredProjects.filter(
+      //     (project) => project.prelimResult.toLowerCase() !== "keep"
+      //   );
+      // }
 
       filteredProjects = options.search ? filteredProjects : sortProjects(filteredProjects);
 

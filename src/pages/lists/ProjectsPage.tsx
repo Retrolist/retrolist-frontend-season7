@@ -15,12 +15,11 @@ import { FINALIZED_ROUND } from "../../utils/api";
 import { categoryLabel } from "../../utils/project";
 import { AnalyticsR5 } from "../analytics/AnalyticsR5";
 import { AnalyticsR6 } from "../analytics/AnalyticsR6";
+import { CURRENT_ROUND } from "../../utils/common";
 
-const { Search } = Input;
-const { Option } = Select;
 export default function ProjectsPage() {
   const finalizedRound =
-    parseInt(import.meta.env.VITE_CURRENT_ROUND) <= FINALIZED_ROUND;
+    CURRENT_ROUND <= FINALIZED_ROUND;
 
   const [search, setSearch] = useState("");
   const [isApprovedProject, setIsApprovedProject] = useState<boolean>(true);
@@ -56,6 +55,8 @@ export default function ProjectsPage() {
       approved: isApprovedProject,
     });
 
+  console.log(projects)
+
   const projectCount = useProjectCount();
 
   const onChange = (value: string) => {
@@ -80,8 +81,8 @@ export default function ProjectsPage() {
           </div> */}
 
           {/* <Analytics /> */}
-          {import.meta.env.VITE_CURRENT_ROUND == 5 && <AnalyticsR5 />}
-          {import.meta.env.VITE_CURRENT_ROUND == 6 && <AnalyticsR6 />}
+          {CURRENT_ROUND == 5 && <AnalyticsR5 />}
+          {CURRENT_ROUND == 6 && <AnalyticsR6 />}
 
           <div className="mb-5">
             <div className="text-2xl font-bold mb-1">All Projects</div>

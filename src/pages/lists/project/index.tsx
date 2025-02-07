@@ -17,8 +17,8 @@ import {
   ProjectMetrics,
   UrlNameDescription,
 } from "../../../types/Project";
-import { apiHost } from "../../../utils/api";
-import { appendHttps, topic } from "../../../utils/common";
+import { apiHost, apiRound } from "../../../utils/api";
+import { appendHttps, CURRENT_ROUND, topic } from "../../../utils/common";
 import { categoryLabel } from "../../../utils/project";
 import { capitalize } from "lodash";
 
@@ -510,19 +510,13 @@ export default function ProjectPage() {
   const fetchProject = useCallback(async () => {
     // const response = await axios.get("/dataset/rpgf3/projects/" + projectId + ".json");
     try {
-      const response = await axios.get(`${apiHost()}/projects/${projectId}`);
+      const response = await axios.get(`${apiHost()}/${apiRound()}/projects/${projectId}`);
       setProject(response.data);
 
       console.log(response.data);
     } catch (err) {
-      if (err instanceof AxiosError) {
-        if (err.response?.status == 404) {
-          window.location.href = `https://round3.retrolist.app/project/${projectId}`;
-        }
-      } else {
-        console.error(err);
-        window.alert("Fetching project failed! Please try again");
-      }
+      console.error(err);
+      window.alert("Fetching project failed! Please try again");
     }
   }, [projectId]);
 
@@ -723,7 +717,7 @@ export default function ProjectPage() {
             <div className="text-[#475467] flex gap-3 items-center font-semibold text-sm">
               <Link to="https://retrolist.app/">Home</Link>
               <img src="/svg/slash.svg" alt="" />
-              <Link to="/">Round {import.meta.env.VITE_CURRENT_ROUND}</Link>
+              <Link to="/">Round {CURRENT_ROUND}</Link>
               <img src="/svg/slash.svg" alt="" />
               <div className="text-[#FA280A] w-28 truncate">
                 {project.displayName}
@@ -820,7 +814,7 @@ export default function ProjectPage() {
                     Total OP Received
                   </div>
                   <div className="mt-1 text-[#667085] text-sm">
-                    Retro Funding {import.meta.env.VITE_CURRENT_ROUND}: {topic()}
+                    Retro Funding {CURRENT_ROUND}: {topic()}
                   </div>
                   <div className="mt-4 border border-[#EAECF0] rounded-lg p-4 bg-[#F9FAFB]">
                     <div className="flex justify-center">

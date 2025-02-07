@@ -23,11 +23,13 @@ export function sigmoid(x: number, xmul: number) {
 }
 
 export function topic(round?: string) {
-  if (!round) round = import.meta.env.VITE_CURRENT_ROUND
+  if (!round) round = CURRENT_ROUND.toString();
 
   switch (round) {
     case '5': return 'OP Stack'
     case '6': return 'Governance'
+    case '7': return 'Dev Tooling'
+    case '8': return 'Onchain Builders'
     default: return ''
   }
 }

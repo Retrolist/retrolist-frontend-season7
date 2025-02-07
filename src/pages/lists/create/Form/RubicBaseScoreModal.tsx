@@ -5,7 +5,7 @@ import { ICriteria } from "../../../../types/Rubric";
 import { CommentAndScore } from "../../../../types/List";
 import { ProjectHeroSection } from "../../../../components/Project/HeroSection";
 import { Project } from "../../../../types/Project";
-import { api } from "../../../../utils/api";
+import { api, apiRound } from "../../../../utils/api";
 import { ProjectView } from "../../project";
 
 const { useBreakpoint } = Grid
@@ -143,7 +143,7 @@ export const RubricBaseScoreModal = ({
   const fetchProject = useCallback(async () => {
     setProject(undefined)
 
-    const response = await api.get("/projects/" + projectId);
+    const response = await api.get(`/projects/${apiRound()}/${projectId}`);
     setProject(response.data);
 
     console.log(response.data);

@@ -4,8 +4,9 @@ interface StatCardProps {
   icon: string;
   title: string;
   description: string;
+  size?: string;
 }
-export const StatCard = ({ description, icon, title }: StatCardProps) => {
+export const StatCard = ({ description, icon, title, size = "text-2xl" }: StatCardProps) => {
   return (
     <div className="lg:w-1/3 p-4 border border-gray-200 bg-white rounded-xl">
       <div className="flex gap-3">
@@ -16,7 +17,7 @@ export const StatCard = ({ description, icon, title }: StatCardProps) => {
           <div style={{ color: "#4C4E64AD" }} className="text-sm font-medium">
             {title}
           </div>
-          <div className="text-2xl">{description}</div>
+          <div className={size}>{description}</div>
         </div>
       </div>
     </div>

@@ -5,17 +5,17 @@ const tabs = [
   "About",
   "Impact Garden",
   "Impact statement",
-  "Funding sources",
   "Contract Address",
   "Links",
+  "Funding sources",
 ];
 const links = [
   "about",
   "impact-garden",
   "impact-statement",
-  "funding-sources",
   "contract-address",
   "links",
+  "funding-sources",
 ];
 
 interface TabNavigateProps {
@@ -43,11 +43,11 @@ const TabNavigation = ({ project }: TabNavigateProps) => {
       case 2:
         return Boolean(project?.application);
       case 3:
-        return project?.fundingSources?.length > 0;
-      case 4:
         return project?.contributionLinks?.length > 0;
+      case 4:
+        return Boolean(project?.attestationBody?.links?.length);
       case 5:
-        return Boolean(project?.attestationBody?.links);
+        return project?.fundingSources?.length > 0;
       default:
         return true;
     }

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { CURRENT_ROUND } from "./common";
 
 export function apiRound(): string {
   // Get the hostname from window.location
@@ -8,9 +9,9 @@ export function apiRound(): string {
   const match = hostname.match(/^round(\d+)/);
 
   // Check if a match is found and extract the round number
-  let roundNumber = (match ? match[1] : import.meta.env.VITE_CURRENT_ROUND) ?? import.meta.env.VITE_CURRENT_ROUND
+  let roundNumber = (match ? match[1] : CURRENT_ROUND) ?? CURRENT_ROUND
 
-  return roundNumber
+  return roundNumber.toString();
 }
 
 export function apiHost() {
