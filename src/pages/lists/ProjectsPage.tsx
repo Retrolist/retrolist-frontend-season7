@@ -55,8 +55,6 @@ export default function ProjectsPage() {
       approved: isApprovedProject,
     });
 
-  console.log(projects)
-
   const projectCount = useProjectCount();
 
   const onChange = (value: string) => {
