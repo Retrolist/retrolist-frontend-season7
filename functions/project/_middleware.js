@@ -18,19 +18,17 @@ export async function onRequest(context) {
   const { pathname } = new URL(request.url);
 
   const round = env.VITE_CURRENT_ROUND
+  const apiHost = env.VITE_API_HOST
 
   const pathParts = pathname.split("/");
   const projectId = pathParts[pathParts.length - 1];
-
-  let res = await next();
-  return res;
 
   let project;
 
   // Load project data
   try {
     const response = await fetch(
-      `https://round${round}-api-eas.retrolist.app/projects/${projectId}`
+      `${apiHost}/${round}/projects/${projectId}`
     );
     project = await response.json();
   } catch (err) {}
