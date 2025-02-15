@@ -25,6 +25,8 @@ export async function onRequest(context) {
 
   let project;
 
+  let res = await next();
+
   // Load project data
   try {
     const response = await fetch(
