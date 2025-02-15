@@ -15,7 +15,7 @@ class RemoveHandler {
 
 export async function onRequest(context) {
   const { request, next, env } = context;
-  const { pathname } = new URL(request.url);
+  const { pathname, origin } = new URL(request.url);
 
   const round = env.VITE_CURRENT_ROUND
   const apiHost = env.VITE_API_HOST
@@ -37,11 +37,11 @@ export async function onRequest(context) {
 
   // Check if og image exists
   let ogExists = false;
-  const defaultOg = `https://round${round}.retrolist.app/img/cover-r${round}-discovery.png`
-  const dynamicOg = `https://round${round}.retrolist.app/og/${projectId}.png`
+  const defaultOg = `${origin}/img/cover-r${round}-discovery.png`
+  const dynamicOg = `${origin}/og/${projectId}.png`
   try {
     const response = await fetch(
-      `https://round${round}.retrolist.app/og/${projectId}.png`
+      `${origin}/og/${projectId}.png`
     );
     
     if (response.ok) {
@@ -79,7 +79,7 @@ export async function onRequest(context) {
     <meta property="fc:frame:image" content="${ogImg}" />
     <meta name="fc:frame:button:1" content="View Project" />
     <meta name="fc:frame:button:1:action" content="link" />
-    <meta name="fc:frame:button:1:target" content="https://round${round}.retrolist.app/project/${projectId}" />
+    <meta name="fc:frame:button:1:target" content="${origin}/project/${projectId}" />
     <meta name="fc:frame:button:2" content="Follow RetroList" />
     <meta name="fc:frame:button:2:action" content="link" />
     <meta name="fc:frame:button:2:target" content="https://warpcast.com/retrolist" />
