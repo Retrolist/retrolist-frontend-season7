@@ -13,7 +13,7 @@ function votingPeriod(round: string) {
     case "7":
       return "Feb 5 - Jul 31, 2025"
     case "8":
-      return "Feb 13 - Jul 31, 2025"
+      return "Feb 18 - Jul 31, 2025"
     default:
       return "";
   }
