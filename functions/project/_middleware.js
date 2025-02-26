@@ -15,9 +15,20 @@ class RemoveHandler {
 
 export async function onRequest(context) {
   const { request, next, env } = context;
-  const { pathname, origin } = new URL(request.url);
+  const { pathname, origin, hostname } = new URL(request.url);
 
-  const round = env.VITE_CURRENT_ROUND
+  const roundSubdomainMap = 
+    env.VITE_ROUNDS_SUBDOMAIN.split(",").reduce(
+      (acc, pair) => {
+        const [round, subdomain] = pair.split(":");
+        acc[subdomain] = parseInt(round);
+        return acc;
+      },
+      {}
+    );
+
+  const round = roundSubdomainMap[hostname.split(".")[0]]
+
   const apiHost = env.VITE_API_HOST
 
   const pathParts = pathname.split("/");

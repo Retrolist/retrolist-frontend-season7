@@ -186,7 +186,7 @@ export function ProjectView({ project }: { project: Project }) {
 
             <div className="mt-5">
               <a
-                href={`https://github.com/opensource-observer/oss-directory/blob/main/data/projects/${project.osoSlug[0].toLowerCase()}/${project.osoSlug.toLowerCase()}.yaml`}
+                href={`https://github.com/opensource-observer/oss-directory/blob/main/data/projects/${project.osoSlug[0].toLowerCase()}/${project.osoSlug}.yaml`}
                 target="_blank"
               >
                 <div className="flex gap-2 items-center text-[#858796]">
