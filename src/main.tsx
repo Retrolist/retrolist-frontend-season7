@@ -21,12 +21,12 @@ import { AntdAlertProvider } from "./providers/AntdAlertProvider";
 import { RainbowKitConfigProvider } from "./providers/RainbowKitConfigProvider";
 import { CreateListReducerRouteWrapper } from "./stores/CreateListReducer";
 
+import { UserbackProvider } from "@userback/react";
 import { IncludedInBallotsProvider } from "./hooks/useIncludedInBallots.tsx";
 import { OPDistributionProvider } from "./hooks/useOPDistribution.tsx";
 import { ProjectCountProvider } from "./hooks/useProjectCount.tsx";
 import { AnalyticsPageRoute } from "./pages/analytics/AnalyticsPage.tsx";
 import "./polyfills.ts";
-
 const router = createBrowserRouter([
   ProjectsPageRoute,
   {
@@ -81,7 +81,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <IncludedInBallotsProvider>
         <OPDistributionProvider>
           <ProjectCountProvider>
-            <RouterProvider router={router} />
+            <UserbackProvider token="A-qtLvQIC1pFYrlXuqe0EdDUF9e">
+              <RouterProvider router={router} />
+            </UserbackProvider>
           </ProjectCountProvider>
         </OPDistributionProvider>
       </IncludedInBallotsProvider>
