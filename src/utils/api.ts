@@ -9,19 +9,22 @@ export function apiRound(): string {
   const match = hostname.match(/^round(\d+)/);
 
   // Check if a match is found and extract the round number
-  let roundNumber = (match ? match[1] : CURRENT_ROUND) ?? CURRENT_ROUND
+  let roundNumber = (match ? match[1] : CURRENT_ROUND) ?? CURRENT_ROUND;
 
   return roundNumber.toString();
 }
 
 export function apiHost() {
   // Replace roundX with correct round
-  return (import.meta.env.VITE_API_HOST as string).replace('roundX', 'round' + apiRound())
+  return (import.meta.env.VITE_API_HOST as string).replace(
+    "roundX",
+    "round" + apiRound()
+  );
 }
 
 export const api = axios.create({
   baseURL: apiHost(),
   withCredentials: false,
-})
+});
 
-export const FINALIZED_ROUND = 6
+export const FINALIZED_ROUND = 8;
