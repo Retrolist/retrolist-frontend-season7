@@ -18,15 +18,14 @@ import { AnalyticsR6 } from "../analytics/AnalyticsR6";
 import { CURRENT_ROUND } from "../../utils/common";
 
 export default function ProjectsPage() {
-  const finalizedRound =
-    CURRENT_ROUND <= FINALIZED_ROUND;
+  const finalizedRound = CURRENT_ROUND <= FINALIZED_ROUND;
 
   const [search, setSearch] = useState("");
   const [isApprovedProject, setIsApprovedProject] = useState<boolean>(true);
   const [select, setSelectValue] = useState<string>("reviewerCount");
   const [categories, setCategories] = useState<string[]>([]);
   const [eligibleFilter, setEligibleFilter] = useState(
-    finalizedRound ? "keep" : ""
+    finalizedRound ? "" : ""
   );
   const [seed, setSeed] = useState(
     Math.floor(Math.random() * 1000000000).toString()
